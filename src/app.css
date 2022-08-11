@@ -1,0 +1,39 @@
+
+:root {
+  font-size: 16px;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0 2em;
+  display: flex;
+  place-items: center;
+}
+
+h1 {
+  font-size: 1.8em;
+}
+
+.clue {
+  display: block;
+  width: 100%;
+}
+
+button {
+  appearance: push-button;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 1em;
+  border-radius: 1em;
+  border-width: 4px;
+
+  border-top-color: #eeb;
+  border-left-color: #eeb;
+  border-bottom-color: #ccc;
+  border-right-color: #ccc;
+}
+
+button:active {
+  background: #FFC;
+}
