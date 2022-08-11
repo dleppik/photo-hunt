@@ -1,5 +1,6 @@
 <script lang="ts">
     import type {PhotoStep} from "./lib/photoStep";
+    import VideoOverlay from "./VideoOverlay.svelte";
 
     export let stepNum: number
     export let allSteps: PhotoStep[]
@@ -26,13 +27,13 @@
     {remainingText}
 </p>
 
-<img class="clue" src={"./clues/"+step.src} alt="clue">
-
 {#if step.type === 'direction'}
+    <img class="clue" src={"./clues/"+step.src} alt="clue">
     <p>Look for clues in this area</p>
     <button on:click={onFinish}>Ready</button>
 {:else}
-    <p>Use your own photo app to take the picture.</p>
+    <VideoOverlay src={"./clues/"+step.src}/>
+    <p>Use your own photo app to take the picture, or click on the photo.</p>
     <button on:click={onFinish}>Found it</button>
 {/if}
 
