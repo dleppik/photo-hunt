@@ -1,5 +1,7 @@
 <script lang="ts">
     export let src: string;
+    export let onFinish: () => void
+    export let addPhoto: (data) => void
 
     let img
     let video
@@ -38,7 +40,8 @@
         const constraints = {
             audio: false,
             video: {
-                width: videoWidth, height: videoHeight
+                height: {min: videoHeight},
+                facingMode: "environment"
             }
         }
         if (navigator.mediaDevices.getUserMedia) {
@@ -47,10 +50,12 @@
                     video.srcObject = stream
                     videoStarted = true
                     decorateImageForVideo()
+                    video.width = videoWidth
+                    video.height = videoHeight
                 })
                 .catch((err) => {
                     console.log(err)
-                    undecorateImage()
+                    unDecorateImage()
                     videoStarted = false
                 })
         }
@@ -64,7 +69,7 @@
                 tracks[i].stop();
             }
             video.srcObject = null;
-            undecorateImage()
+            unDecorateImage()
         }
         videoStarted = false
     }
@@ -84,8 +89,15 @@
         img.style.filter = "contrast(200%) grayscale(100%)"
     }
 
-    function undecorateImage() {
+    function unDecorateImage() {
         img.style.filter = ""
+    }
+
+    function handleDone() {
+        if (currentImageSrc !== src) {
+            addPhoto(currentImageSrc)
+        }
+        onFinish()
     }
 </script>
 
@@ -96,7 +108,19 @@
         ></video>
     </div>
 {/if}
+
 <img class="clue" bind:this={img} src={currentImageSrc} alt="clue" on:click={startAction} style="transition-duration: 1s">
+
+{#if !active}
+    {#if currentImageSrc === src}
+        <p>Use your own photo app to take the picture, or tap on the photo.</p>
+    {:else }
+        <p>Tap the photo if you want to reshoot.</p>
+    {/if}
+{/if}
 {#if videoStarted}
     <button on:click={saveImage}>Take Picture</button>
+{:else }
+    <button on:click={handleDone}>Found it</button>
 {/if}
+

@@ -37,3 +37,16 @@ button {
 button:active {
   background: #FFC;
 }
+
+.action {
+  color: blue;
+}
+.action:active {
+  color: lightblue;
+}
+
+.snapshot-viewer {
+  border-top: 1px solid #ccc;
+  margin-top: 1em;
+  padding-top: 1em;
+}

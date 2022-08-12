@@ -5,6 +5,7 @@
     export let stepNum: number
     export let allSteps: PhotoStep[]
     export let onFinish: () => void
+    export let addPhoto: (data) => void
 
     $: step = allSteps[stepNum]
     $: remainingText = remainingCluesText(stepNum, allSteps)
@@ -32,8 +33,6 @@
     <p>Look for clues in this area</p>
     <button on:click={onFinish}>Ready</button>
 {:else}
-    <VideoOverlay src={"./clues/"+step.src}/>
-    <p>Use your own photo app to take the picture, or click on the photo.</p>
-    <button on:click={onFinish}>Found it</button>
+    <VideoOverlay src={"./clues/"+step.src} onFinish={onFinish} addPhoto={addPhoto}/>
 {/if}
 

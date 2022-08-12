@@ -3,6 +3,7 @@
   import Done from "./Done.svelte";
   import type {PhotoStep} from "./lib/photoStep";
   import PhotoStepView from "./PhotoStepView.svelte";
+  import SnapshotViewer from "./SnapshotViewer.svelte";
 
   const photos: PhotoStep[] = [
       {type: "direction", src: "IMG_6551.jpeg"},
@@ -32,6 +33,8 @@
       {type: "clue", src: "IMG_6582.jpeg"},
   ]
 
+  let snapshots = []
+
   let started = false
   let photoIndex = 0
 
@@ -48,6 +51,11 @@
     started = false
     photoIndex = 0
   }
+
+  function addSnapshot(photoData) {
+      snapshots.push(photoData)
+      snapshots = snapshots // trigger update
+  }
 </script>
 
 <main>
@@ -55,9 +63,11 @@
       <Instructions/>
       <button on:click={onStart}>Start</button>
     {:else if (photoIndex < photos.length)}
-      <PhotoStepView stepNum={photoIndex} allSteps={photos} onFinish={nextPhoto}/>
-    {:else}
+      <PhotoStepView stepNum={photoIndex} allSteps={photos} onFinish={nextPhoto} addPhoto={addSnapshot}/>
+      <SnapshotViewer photos={snapshots} />
+  {:else}
       <Done/>
+      <SnapshotViewer photos={snapshots} />
       <button on:click={startOver}>Start over</button>
   {/if}
 </main>
