@@ -81,7 +81,7 @@
         const ctx = canvas.getContext('2d');
         canvas.width = videoWidth
         canvas.height = videoHeight
-        ctx.drawImage(video, 0, 0)
+        ctx.drawImage(video, 0, 0, videoWidth, videoHeight)
         currentImageSrc = canvas.toDataURL("image/png")
         stopVideo()
         active = false

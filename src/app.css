@@ -26,17 +26,19 @@ h1 {
   text-shadow: black 0 0 4px;
   font-size: 64px;
   font-weight: bolder;
-  animation-duration: 3s;
+  animation-duration: 2s;
   animation-name: zoom;
   color: white;
 }
 
 @keyframes zoom {
   from {
-    top: -64px;
+    top:  0px;
+    transform: perspective(23rem) translate3d(0, 0, 100px);
   }
   to {
     top: 50%;
+    transform: none;
   }
 }
 
