@@ -70,6 +70,5 @@
   {:else}
       <Done/>
       <SnapshotViewer photos={snapshots} />
-      <button on:click={startOver}>Start over</button>
   {/if}
 </main>

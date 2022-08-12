@@ -30,8 +30,10 @@
 </p>
 
 {#if step.type === 'direction'}
+    <div class="overlay-banner">
+        Start Here
+    </div>
     <img class="clue" src={"./clues/"+step.src} alt="clue">
-    <p>Look for clues in this area</p>
     <button on:click={onFinish}>Ready</button>
 {:else}
     <VideoOverlay src={"./clues/"+step.src} onFinish={onFinish} addPhoto={addPhoto}/>

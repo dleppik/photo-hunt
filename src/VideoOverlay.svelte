@@ -10,8 +10,10 @@
     let videoWidth = 10
     let videoHeight = 10
     let videoStarted = false
+    let continueText = "Next"
 
     $: currentImageSrc = src
+    $: continueText = (currentImageSrc === src) ? "Continue w/o pic" : "Use Picture";
 
     function startAction() {
         active = !active
@@ -113,14 +115,14 @@
 
 {#if !active}
     {#if currentImageSrc === src}
-        <p>Use your own photo app to take the picture, or tap on the photo.</p>
+        <p class="clue"><b>Tap the photo</b> to take a picture.</p>
     {:else }
-        <p>Tap the photo if you want to reshoot.</p>
+        <p><b>Tap the photo if you want to reshoot.</b></p>
     {/if}
 {/if}
 {#if videoStarted}
     <button on:click={saveImage}>Take Picture</button>
 {:else }
-    <button on:click={handleDone}>Found it</button>
+    <button on:click={handleDone}>{continueText}</button>
 {/if}
 
