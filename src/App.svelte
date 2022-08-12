@@ -4,6 +4,7 @@
   import type {PhotoStep} from "./lib/photoStep";
   import PhotoStepView from "./PhotoStepView.svelte";
   import SnapshotViewer from "./SnapshotViewer.svelte";
+  import Prefetch from "./Prefetch.svelte";
 
   const photos: PhotoStep[] = [
       {type: "direction", src: "IMG_6551.jpeg"},
@@ -62,6 +63,7 @@
   {#if !started}
       <Instructions/>
       <button on:click={onStart}>Start</button>
+      <Prefetch allSteps={photos} stepNum={0} />
     {:else if (photoIndex < photos.length)}
       <PhotoStepView stepNum={photoIndex} allSteps={photos} onFinish={nextPhoto} addPhoto={addSnapshot}/>
       <SnapshotViewer photos={snapshots} />

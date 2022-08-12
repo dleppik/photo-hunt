@@ -11,14 +11,14 @@
 {#if photos.length > 0}
     <div class="snapshot-viewer">
         {#if open}
-            <a on:click={toggle}>Close</a>
+            <div class="action" on:click={toggle}>Close</div>
             {#each photos as photo}
                 <div>
-                    <img src={photo}>
+                    <img src={photo} alt="">
                 </div>
             {/each}
         {:else}
-            <a on:click={toggle}>Review snapshots</a>
+            <div class="action" on:click={toggle}>Review snapshots</div>
         {/if}
     </div>
 {/if}

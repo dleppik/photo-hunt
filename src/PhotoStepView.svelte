@@ -1,6 +1,7 @@
 <script lang="ts">
     import type {PhotoStep} from "./lib/photoStep";
     import VideoOverlay from "./VideoOverlay.svelte";
+    import Prefetch from "./Prefetch.svelte";
 
     export let stepNum: number
     export let allSteps: PhotoStep[]
@@ -36,3 +37,4 @@
     <VideoOverlay src={"./clues/"+step.src} onFinish={onFinish} addPhoto={addPhoto}/>
 {/if}
 
+<Prefetch allSteps={allSteps} stepNum={stepNum + 1} />
