@@ -69,6 +69,9 @@
       <SnapshotViewer photos={snapshots} />
   {:else}
       <Done/>
-      <SnapshotViewer photos={snapshots} />
-  {/if}
+      {#each snapshots as photo}
+          <div>
+              <img src={photo} alt="">
+          </div>
+      {/each}  {/if}
 </main>

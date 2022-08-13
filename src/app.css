@@ -33,7 +33,7 @@ h1 {
 
 @keyframes zoom {
   from {
-    top:  0px;
+    top:  0;
     transform: perspective(23rem) translate3d(0, 0, 100px);
   }
   to {
@@ -78,4 +78,21 @@ button:active {
   border-top: 1px solid #ccc;
   margin-top: 1em;
   padding-top: 1em;
+}
+
+.done {
+  text-align: center;
+  animation-name: done;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+}
+
+@keyframes done {
+  from {
+    rotate: 0;
+    scale: 8;
+  }
+  to {
+    rotate: 360deg;
+  }
 }

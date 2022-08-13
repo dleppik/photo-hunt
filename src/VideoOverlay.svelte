@@ -1,4 +1,6 @@
 <script lang="ts">
+    import {onDestroy} from "svelte";
+
     export let src: string;
     export let onFinish: () => void
     export let addPhoto: (data) => void
@@ -13,7 +15,7 @@
     let continueText = "Next"
 
     $: currentImageSrc = src
-    $: continueText = (currentImageSrc === src) ? "Continue w/o pic" : "Use Picture";
+    $: continueText = (currentImageSrc === src) ? "Continue without pic" : "Use Picture";
 
     function startAction() {
         active = !active
@@ -101,6 +103,8 @@
         }
         onFinish()
     }
+
+    onDestroy(stopVideo)
 </script>
 
 {#if active}
@@ -121,6 +125,7 @@
     {/if}
 {/if}
 {#if videoStarted}
+    <p class="clue">Tap picture to cancel.</p>
     <button on:click={saveImage}>Take Picture</button>
 {:else }
     <button on:click={handleDone}>{continueText}</button>

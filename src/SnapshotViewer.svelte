@@ -1,7 +1,7 @@
 <script lang="ts">
     export let photos: []
 
-    let open = false
+    export let open = false
 
     function toggle() {
         open = !open
