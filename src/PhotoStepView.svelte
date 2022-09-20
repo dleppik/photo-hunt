@@ -25,10 +25,6 @@
     }
 </script>
 
-<p>
-    {remainingText}
-</p>
-
 {#if step.type === 'direction'}
     <div class="overlay-banner">
         Start Here
@@ -39,4 +35,9 @@
     <VideoOverlay src={"./clues/"+step.src} onFinish={onFinish} addPhoto={addPhoto}/>
 {/if}
 
+<p>
+    {remainingText}
+</p>
+
 <Prefetch allSteps={allSteps} stepNum={stepNum + 1} />
+<Prefetch allSteps={allSteps} stepNum={stepNum + 2} />
